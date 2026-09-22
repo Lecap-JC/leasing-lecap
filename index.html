@@ -189,7 +189,7 @@ src="https://www.facebook.com/tr?id=1478928590046872&ev=PageView&noscript=1"></n
    --------------------------------------------------------------- */
 var CONFIG = {
   portalId: '51427098',
-  formGuid: 'PEGAR_AQUI_EL_GUID_DEL_FORMULARIO',
+  formGuid: '84e300d4-45f4-4eff-9bab-44f0510f7bb2',
   pixelId:  '1478928590046872'
 };
 
@@ -276,10 +276,7 @@ function armarCampos(){
   datos.forEach(function(valor, clave){
     if (String(valor).trim() !== '') campos.push({name: clave, value: String(valor)});
   });
-  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(u){
-    var v = parametro(u);
-    if (v) campos.push({name: u, value: v});
-  });
+  /* Las UTM viajan dentro de context.pageUri, que conserva la query string. */
   return campos;
 }
 
