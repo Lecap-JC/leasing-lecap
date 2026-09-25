@@ -303,10 +303,12 @@ form.addEventListener('submit', function(e){
     fields: armarCampos(),
     context: {
       pageUri: location.href,
-      pageName: document.title,
-      hutk: galleta('hubspotutk')
+      pageName: document.title
     }
   };
+  /* HubSpot rechaza un hutk vacío: se manda solo si existe la cookie. */
+  var hutk = galleta('hubspotutk');
+  if (hutk) cuerpo.context.hutk = hutk;
 
   fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + CONFIG.portalId + '/' + CONFIG.formGuid, {
     method: 'POST',
